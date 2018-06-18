@@ -52,7 +52,7 @@ class Produits
     private $descriptionProduit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="produits")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories")
      * @ORM\JoinColumn(nullable=false)
      */
     //jointure vers la table Categories -> id 

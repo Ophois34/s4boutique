@@ -19,7 +19,7 @@
 			<tbody>
 				{% for prod in produits %}
 					<tr>
-						<td>{{prod.idProduit }}</td>
+						<td>{{prod.idProduit.nomProduit }}</td>
 						<td>{{prod.quantiteProduit}}</td>
 						<td>{{prod.datePanier|date('d/m/Y')}}</td>
 						<td class="text-right">

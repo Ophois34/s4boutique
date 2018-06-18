@@ -22,7 +22,8 @@ class Panier
     private $idClient;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produits")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idProduit;
 
@@ -53,12 +54,12 @@ class Panier
         return $this;
     }
 
-    public function getIdProduit(): ?int
+    public function getIdProduit(): ?Produits
     {
         return $this->idProduit;
     }
 
-    public function setIdProduit(int $idProduit): self
+    public function setIdProduit(?Produits $idProduit): self
     {
         $this->idProduit = $idProduit;
 
