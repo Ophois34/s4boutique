@@ -1,0 +1,38 @@
+{# templates/public/panier.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title%}{{title}}{% endblock %}
+
+{% block body %}
+<h1>Mon Panier</h1>
+	{% if produits %}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Quantité</th>
+					<th>Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for prod in produits %}
+					<tr>
+						<td>{{prod.idProduit }}</td>
+						<td>{{prod.quantiteProduit}}</td>
+						<td>{{prod.datePanier|date('d/m/Y')}}</td>
+						<td class="text-right">
+							<button class="btn btn-warning">
+								<i class="fas fa-edit"></i>
+							</button> 
+							<button class="btn btn-danger">
+								<i class="fas fa-trash-alt"></i>
+							</button>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+{% endblock %}

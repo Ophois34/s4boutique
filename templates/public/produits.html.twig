@@ -1,0 +1,29 @@
+{# templates/public/produits.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+	<h2>{{ produits.0.idCategorie.libelleCategorie }}</h2>
+	<section class="	row">
+		{% for article in produits %}
+			<article class="col-md-3">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<h4 class="text-center">
+							{{ article.nomProduit }}
+						</h4></li>
+					<li class="list-group-item">
+						<img src="{{ asset('img/produits/')}}{{article.photoProduit}}" class="img-fluid">
+					</li>
+					<li class="list-group-item">
+						<b>Prix:</b> {{ article.prixProduit }}</li>
+					<li class="list-group-item text-center">
+							<a href="{{ url('detailProduit', {'id' : article.id}) }}" class="btn btn-primary">Détails</a>
+					</li>
+				</ul>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock %}

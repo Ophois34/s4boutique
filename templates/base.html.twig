@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    		<header class="row">
+    			<div class="col-md-3">
+    				<img src="{{ asset('img/logo.png') }}" 
+    						 alt="mon logo" 
+                 class="img-fluid"/>
+    			</div>
+    			<div class="col-md-9">
+    				<h1>Ma boutique Symfony</h1>
+    			</div>
+    		</header>
+    		<div class="container principal">
+	    		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    			<a class="navbar-brand"
+  	  						 href="{{ url('index') }}">
+  	  						 <i class="fas fa-home"></i>Accueil
+  	  			</a>
+  	  			<button type="button" 
+  	  								  class="navbar-toggler"
+  	  								  data-toggle="collapse"
+  	  								  data-target="#menu"
+  	  								  aria-controls="navbarSupportedContent">
+  	  				<span class="navbar-toggler-icon"></span>
+  	  			</button>
+  	  			<div class="collapse navbar-collapse"
+  	  							 id="menu">
+  	  						{{ render(controller('App\\Controller\\MenuController::navbar')) }}
+							</div> <!-- fin collapse -->  
+					</nav>    		
+        {% block body %}{% endblock %}
+        </div>
+        <footer class="row">
+        	<p class="col-md-6">
+            Copyright &copy; Moi 2018
+          </p>
+        	<p class="col-md-6">
+            <a href="{{ url('mentions') }}">
+              Mentions légales
+            </a>
+          </p>
+        </footer>
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

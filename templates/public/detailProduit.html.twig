@@ -1,0 +1,53 @@
+{# templates/public/detailProduit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title}} {% endblock %}
+
+{% block body %}
+<section class="row">
+	<article class="col-md-6">
+		<img src="{{ asset('img/produits/')}}{{detail.photoProduit}}" class="img-fluid">
+	</article>
+	<article class="col-md-6">
+		<ul class="list-group">
+		<li class="list-group-item">
+			<b>Article:</b> {{ detail.nomProduit }} </li>
+		<li class="list-group-item">
+			<b>Référence:</b> {{ detail.refProduit }} </li>
+		<li class="list-group-item">
+			<b>Prix:</b> {{ detail.prixProduit }} €</li>
+		<li class="list-group-item">
+			<b>Taille:</b> {{ detail.tailleProduit }} </li>
+		<li class="list-group-item">
+			<b>Couleur:</b> {{ detail.couleurProduit }} </li>
+		<li class="list-group-item">
+			<b>Description:</b> {{ detail.descriptionProduit }} </li>
+		<li class="list-group-item">
+			<b>Stocks:</b> {{ detail.stocksProduit }} </li>
+		<li class="list-group-item">
+			<b>Sexe:</b> {{ detail.sexeProduit }} </li>
+		<li class="list-group-item">
+			<b>Catégorie:</b> {{ detail.idCategorie.libelleCategorie }} </li>
+		{% if app.user %}
+		<li class="list-group-item">
+			<form method="post" action="{{ url('ajoutPanier') }}">
+				<input type="hidden" name="idProduit" 
+							 value="{{ detail.id }}" />
+				<div class="form-group">
+					<label>Quantite</label>
+					<input type="number" min="0"
+								 name="quantite" class="form-control" 
+								 max="{{ detail.stocksProduit }}"/>
+				</div>
+				<div class="form-group text-center">
+					<input type="submit" class="btn btn-primary"
+							 	 value="Commander" />
+				</div>
+			</form>
+		</li>
+		{% endif %} 
+	</ul>
+	</article>
+</section>
+{% endblock %}
