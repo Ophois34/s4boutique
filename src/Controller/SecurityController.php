@@ -83,6 +83,10 @@ class SecurityController extends Controller
 	{
 		//récupération de l'utilisateur connecté
 		$user = $this->getUser();
-		return new Response('<pre>'.print_r($user, true));
+		
+		//return new Response('<pre>'.print_r($user, true));
+		return $this->render('security/user.html.twig', 
+									array('title' => 'mon profil',
+												'user' => $user));
 	}
 }

@@ -1,16 +1,19 @@
 /* panier.js */
+//page chargée?
 $(document).ready(function(){
-
+	//clic sur le bouton modifier d'une ligne
 	$('.modif').on('click', function(){
 		elem = $(this).prop('id').substr(1);
 		value = $('#i'+elem).val();
-		alert('modif' + ' '+ elem + ' ' + value);
+		//alert('modif' + ' '+ elem + ' ' + value);
 		$.ajax({
-			url: '{{ path("/modifPanier")}}',
+			url: 'modifPanier',
 			type: "post",
+			data: {'id': elem, 'value': value},
+			dataType: 'json',
 			success: function(data)
 			{
-				alert(data);
+				$('#message').html(data.msg);
 			},
 			error: function(a,b,c)
 			{
@@ -19,7 +22,7 @@ $(document).ready(function(){
 		});
 
 	});
-
+	//clic sur le bouton supprimer d'une ligne
 	$('.supp').on('click', function(){
 		$.ajax({
 			url: "suppPanier",
@@ -32,7 +35,8 @@ $(document).ready(function(){
 			},
 			success: function(data)
 			{
-				alert(data.a);
+				window.location.reload();
+				$('#message').html(data.msg);
 			}
 		});
 	});

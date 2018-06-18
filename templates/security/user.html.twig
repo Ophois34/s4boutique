@@ -1,0 +1,41 @@
+{# templates/security/user.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block body %}
+	<ul class="list-group">
+		<li class="list-group-item">
+			<b>Nom:</b> {{ user.nomclient}}
+		</li>
+		<li class="list-group-item">
+			<b>Prénom:</b> {{ user.prenomclient}}
+		</li>
+		<li class="list-group-item">
+			<b>Email:</b> {{ user.emailClient}}
+		</li>
+		<li class="list-group-item">
+			<b>Adresse:</b> {{ user.adresseClient}}
+		</li>
+		<li class="list-group-item">
+			<b>code Postal:</b> {{ user.cpClient}}
+		</li>
+		<li class="list-group-item">
+			<b>Ville:</b> {{ user.villeClient}}
+		</li>
+		<li class="list-group-item">
+			<b>Téléphone:</b> {{ user.telClient}}
+		</li>
+		<li class="list-group-item">
+			<b>Newsletter:</b> 
+			{% if user.newsletterClient == 'n' %}
+			<i class="fas fa-times fa-2x text-danger"></i>
+			{% else %}
+			<i class="fas fa-check fa-2x text-success"></i>
+			{% endif %}
+		</li>
+
+	</ul>
+
+{% endblock %}

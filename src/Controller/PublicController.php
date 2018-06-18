@@ -71,6 +71,10 @@ class PublicController extends Controller
 	*/
 	public function ajoutPanier(REQUEST $request)
 	{ 
+		//appel du modèle Produits
+		$produits = $this->getDoctrine()->getRepository(Produits::class);
+		//infos du produit (SELECT * FROM produits where id= :id)
+		$produit = $produits->find($request->get('idProduit'));
 		//Entity Manager
 		$em = $this->getDoctrine()->getManager();
 		//création du panier
@@ -80,8 +84,8 @@ class PublicController extends Controller
 		//l'utilisateur loggué
 		$user = $this->getUser();
 		$panier->setIdClient($user->getId());
-		// l'id du produit
-		$panier->setIdProduit($request->get('idProduit'));
+		// l'id du produit doit être un objet de type Produit
+		$panier->setIdProduit($produit);
 		//la quantité
 		$panier->setQuantiteProduit($request->get('quantite'));
 		// enregistrement de l'objet
