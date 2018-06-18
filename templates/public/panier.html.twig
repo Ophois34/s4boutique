@@ -20,13 +20,17 @@
 				{% for prod in produits %}
 					<tr>
 						<td>{{prod.idProduit.nomProduit }}</td>
-						<td>{{prod.quantiteProduit}}</td>
+						<td><input type="number" class="form-control"  				  value="{{prod.quantiteProduit}}"
+											 id="i{{prod.id}}"/>
+						</td>
 						<td>{{prod.datePanier|date('d/m/Y')}}</td>
 						<td class="text-right">
-							<button class="btn btn-warning">
+							<button class="btn btn-warning modif"
+											id="m{{prod.id}}">
 								<i class="fas fa-edit"></i>
 							</button> 
-							<button class="btn btn-danger">
+							<button class="btn btn-danger supp"
+											id="s{{prod.id}}">
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</td>
@@ -35,4 +39,9 @@
 			</tbody>
 		</table>
 	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/panier.js') }}">
+	</script>
 {% endblock %}
