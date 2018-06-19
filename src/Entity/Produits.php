@@ -133,12 +133,12 @@ class Produits
         return $this;
     }
 
-    public function getPhotoProduit(): ?string
+    public function getPhotoProduit()
     {
         return $this->photoProduit;
     }
 
-    public function setPhotoProduit(string $photoProduit): self
+    public function setPhotoProduit($photoProduit)
     {
         $this->photoProduit = $photoProduit;
 

@@ -30,7 +30,8 @@
 		<li class="list-group-item">
 			<b>Catégorie:</b> {{ detail.idCategorie.libelleCategorie }} </li>
 		{% if app.user %}
-		<li class="list-group-item">
+			{% if detail.stocksProduit > 0 %}
+			<li class="list-group-item">
 			<form method="post" action="{{ url('ajoutPanier') }}">
 				<input type="hidden" name="idProduit" 
 							 value="{{ detail.id }}" />
@@ -45,7 +46,12 @@
 							 	 value="Commander" />
 				</div>
 			</form>
-		</li>
+			</li>
+			{% else %}
+				<li class="list-group-item">
+					<p class="alert alert-warning">Cet article est actuellement victime de son succès.</p>
+				</li>
+			{% endif %}
 		{% endif %} 
 	</ul>
 	</article>

@@ -1,0 +1,56 @@
+{# templates/admin/ajoutProduit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<div class="form-group">
+	{{ form_row(form.idCategorie, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.refProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.nomProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.prixProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.tailleProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div><div class="form-group">
+	{{ form_row(form.couleurProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div><div class="form-group">
+	{{ form_row(form.photoProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.descriptionProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.prixProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.stocksProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group">
+	{{ form_row(form.sexeProduit, 
+							 {attr: {class: 'form-control'}}) }}
+	</div>
+	<div class="form-group text-center">
+		<button type="submit" class="btn btn-primary">Ajouter</button>
+	</div>
+	{{ form_end(form) }}
+	
+{% endblock %}
