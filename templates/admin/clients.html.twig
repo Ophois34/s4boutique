@@ -1,0 +1,41 @@
+{# templates/admin/clients.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+{% if clients %}
+	<table class="table table-striped">
+		<tr>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Email</th>
+			<th>Téléphone</th>
+			<th>Adresse</th>
+			<th>Code Postal</th>
+			<th>Ville</th>
+			<th>Newsletter</th>
+		</tr>
+		{% for clt in clients %}
+			<tr>
+				<td>{{ clt.nomclient }}</td>
+				<td>{{ clt.prenom_client }}</td>
+				<td>{{ clt.email_client }}</td>
+				<td>{{ clt.tel_client }}</td>
+				<td>{{ clt.adresse_client }}</td>
+				<td>{{ clt.cp_client }}</td>
+				<td>{{ clt.ville_client }}</td>
+				<td>{% if clt.newsletter_client == 'n' %}
+					<i class="fas fa-times fa-2x text-danger"></i>
+					{% else %}
+					<i class="fas fa-check fa-2x text-success"></i>
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% else %}
+	<div class="alert alert-danger">Aucun client enregistré</div>
+{% endif %}
+{% endblock %}

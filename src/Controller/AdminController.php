@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Produits;
 //pour les catégories
 use App\Entity\Categories;
+//pour les clients
+use app\Entity\Clients;
 //service d'upload de fichiers
 use App\Services\MonUpload;
 //formulaire produits
@@ -48,6 +50,22 @@ class AdminController extends Controller
 		return $this->render('admin/ajoutProduit.html.twig',
 									array('form' => $form->createView(),
 												'title' => 'Ajouter un produit'));
+	}
+
+	/**
+	 * @Route("/clients", name="clients")
+	 */
+	public function clients()
+	{
+		$clients = $this->getDoctrine()->getRepository(Clients::class);
+		//appel de la fonction qui se trouve directement 
+		//dans le repository
+		$listeClients = $clients->roleUser();
+		
+		return $this->render('admin/clients.html.twig',
+										array('title' => 'Clients',
+													'clients' => $listeClients));
+
 	}
 
 
