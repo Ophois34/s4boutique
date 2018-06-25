@@ -1,0 +1,40 @@
+{# templates/public/contact.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-md-6">
+			<h1>Formulaire</h1>
+			{{ form_start(form) }}
+			<div class="form-group">
+			{{ form_row(form.nom, 
+									 {attr: {class: 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+			{{ form_row(form.email, 
+									 {attr: {class: 'form-control'}}) }}
+			</div>
+			<div class="form-group">
+			{{ form_row(form.message, 
+									 {attr: {class: 'form-control'}}) }}
+			</div>
+			<div class="form-group text-center">
+			{{ form_row(form.send, 
+									 {attr: {class: 'btn btn-primary'}}) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+		<div class="col-md-6">
+			<h1>carte</h1>
+			<div id="map"></div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+		<script src="{{ asset('js/gmaps.js') }}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDwMSNslhTJzpI1A8U6iffFKfCCVP47awo" async defer></script>
+{% endblock %}

@@ -6,6 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 //annotations pour les routes
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+// formulaire contact
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 //pour la table des produits
 use App\Entity\Produits;
 //pour les catégories
@@ -108,5 +113,32 @@ class PublicController extends Controller
 									array('title' => 'Mon panier',
 											  'produits' => $produits));
 	}
+
+	/**
+	* @Route("/contact", name="contact")
+	*/
+	public function contact(Request $request)
+	{
+		$defaultData = array('message' => 'Contactez nous');
+    $form = $this->createFormBuilder($defaultData)
+        ->add('nom', TextType::class)
+        ->add('email', EmailType::class)
+        ->add('message', TextareaType::class)
+        ->add('send', SubmitType::class, 
+      				 array('label' => 'Envoyer'))
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $data = $form->getData();
+        //envoi mail...
+    }
+
+		return $this->render('public/contact.html.twig', 
+									array('title' => 'Contactez nous',
+												'form' => $form->createView())
+		);
+	} 
 
 }
