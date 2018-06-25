@@ -64,6 +64,10 @@ class ComposerStaticInitfb61ceff408750e8aa69110a148d963e
             'Symfony\\Bridge\\Doctrine\\' => 24,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
         ),
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
@@ -76,6 +80,7 @@ class ComposerStaticInitfb61ceff408750e8aa69110a148d963e
         'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
+            'EWZ\\Bundle\\RecaptchaBundle\\' => 27,
         ),
         'D' => 
         array (
@@ -259,6 +264,10 @@ class ComposerStaticInitfb61ceff408750e8aa69110a148d963e
         array (
             0 => __DIR__ . '/..' . '/sensio/framework-extra-bundle',
         ),
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -286,6 +295,10 @@ class ComposerStaticInitfb61ceff408750e8aa69110a148d963e
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
+        ),
+        'EWZ\\Bundle\\RecaptchaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/excelwebzone/recaptcha-bundle/src',
         ),
         'Doctrine\\ORM\\' => 
         array (

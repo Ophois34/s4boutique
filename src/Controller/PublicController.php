@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+// pour ajouter un captcha
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 //pour la table des produits
 use App\Entity\Produits;
 //pour les catégories
@@ -119,11 +121,12 @@ class PublicController extends Controller
 	*/
 	public function contact(Request $request)
 	{
-		$defaultData = array('message' => 'Contactez nous');
+		$defaultData = array();
     $form = $this->createFormBuilder($defaultData)
         ->add('nom', TextType::class)
         ->add('email', EmailType::class)
         ->add('message', TextareaType::class)
+        ->add('recaptcha', EWZRecaptchaType::class)
         ->add('send', SubmitType::class, 
       				 array('label' => 'Envoyer'))
         ->getForm();

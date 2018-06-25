@@ -33,3 +33,9 @@ services:
     App\Services\MonUpload:
         arguments:
             $targetDir: '%fUpload%'
+
+ewz_recaptcha:
+    public_key: '6Le6mmAUAAAAAAW67w01NHAqJo0f_h7T48IrqeFu'
+    private_key: '6Le6mmAUAAAAAE1G89spUrj4h60lCVlTO30vRTS_'
+    # Not needed as "%kernel.default_locale%" is the default value for the locale key
+    locale_key: '%kernel.default_locale%'
