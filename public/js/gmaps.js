@@ -21,10 +21,12 @@ function initMap()
         if (status === google.maps.GeocoderStatus.OK)
         {
             map.setCenter(results[0].geometry.location);
+            var image = 'http://localhost/s4boutique/public/img/store.svg';
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
-                title: 'Nous sommes ici...'
+                title: 'Nous sommes ici...',
+                icon: image
             });
     
             // ajout de la boite et du listener
@@ -43,11 +45,15 @@ function initMap()
     $.ajax({
 			url: 'recupAdr',
 			type: "post",
+			// normalement il faut un data contenant 
+			// la ville à rechercher (ou le CP)
+			// Bien sûr il faudra personnaliser la requete
 			dataType: 'json',
 			success: function(data)
 			{
 				var marker2;
 				geocoder2 = new google.maps.Geocoder();
+				//pour chaque client trouvé
 				$.each(data, function(i, elem)
 				{
 					//alert(elem);
