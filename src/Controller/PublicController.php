@@ -135,6 +135,7 @@ class PublicController extends Controller
 
     if ($form->isSubmitted() && $form->isValid()) {
         $data = $form->getData();
+        //dump($data);
         //envoi mail...
     }
 
@@ -143,5 +144,4 @@ class PublicController extends Controller
 												'form' => $form->createView())
 		);
 	} 
-
 }

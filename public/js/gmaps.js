@@ -1,57 +1,77 @@
 /* gmaps.js */
+
 //variable pour la carte
 var map;
-
 //fonction initMap appelée par l'API Google
 function initMap()
 {
-	//lattitude et longitude du lieu à afficher
-	var latLng = {lat: 43.6788781, lng: 3.8701737 };
-	//div devant recevoir la carte
-	var mapDiv = document.getElementById('map');
-	//appel de l'API google
-	map = new google.maps.Map(mapDiv, {
-		center: latLng,
-		zoom: 17,
-		mapTypeId: 'satellite'
-	});
-
-	//ajout d'un marqueur (épingle)
-	var marker = new google.maps.Marker({
-		//emplacement
-		position: latLng,
-		//atachement à la carte
-		map: map,
-		//légende
-		title: 'WebForce 3 is here!'
-	});
-
-	//deuxième marqueur
-	var marker2 = new google.maps.Marker({
-		position: {lat: 43.678, lng: 3.870 },
-		map: map,
-		title: 'je sais pas ou...' 
-	});
-
-	//contenu HTML de la boite d'info
-  var contentString = '<div id="content">'+
-      '<div id="siteNotice">WebForce3 is here...'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">WebForce3</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>WebForce3</b>: Ecole de développeurs Web à Montferrier.<br/>'+
-      '<img src="http://www.marseille-innov.org/wp-content/uploads/2016/09/logo-webforce3.jpg" class="logo" /></p>'+
-      '</div>'+
-      '</div>';
-  //boite d'info
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-  // ajout de la boite et du listener
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-
-
-
-} //fin initMap
+    //DIV devant recevoir la carte
+    var mapDiv = document.getElementById('map');
+    //création de la carte
+    map = new google.maps.Map(mapDiv, {
+        zoom: 14,
+        mapTypeId: 'satellite'
+    });
+    
+    // pour centrer la carte avec une adresse réelle
+    var geocoder = new google.maps.Geocoder();
+    var address = "600 Avenue du Campus Agropolis, 34980 Montferrier-sur-Lez";
+    geocoder.geocode({'address': address}, function(results, status) 
+    {
+        if (status === google.maps.GeocoderStatus.OK)
+        {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                title: 'Nous sommes ici...'
+            });
+    
+            // ajout de la boite et du listener
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+    
+        } 
+        else 
+        {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        
+    });
+    /* récupération des adresses dans la BDD */
+    $.ajax({
+			url: 'recupAdr',
+			type: "post",
+			dataType: 'json',
+			success: function(data)
+			{
+				var marker2;
+				geocoder2 = new google.maps.Geocoder();
+				$.each(data, function(i, elem)
+				{
+					//alert(elem);
+					geocoder2.geocode({'address': elem.adr}, 
+    			function(results2, status2)
+    			{
+        		if (status2 === google.maps.GeocoderStatus.OK)
+        		{
+           		marker2 = new google.maps.Marker({
+             	map: map,
+             	position: results2[0].geometry.location,
+             	title: elem.nom
+           		});    
+        		}
+        		else
+        		{
+           		alert('Geocode was not successful for the following reason: ' + status2);
+        		}
+    			}); //fin geocoder
+				}); //fin each
+			},
+			error: function(a,b,c)
+			{
+				alert('oups' + a + b + c);
+			}
+		});
+} //fin initmap

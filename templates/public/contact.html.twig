@@ -6,7 +6,7 @@
 
 {% block body %}
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<h1>Formulaire</h1>
 			{{ form_start(form) }}
 			<div class="form-group">
@@ -30,6 +30,7 @@
 										       'size': 'normal'
 										    },
 }}) }}
+{# form_errors(form.recaptcha) #}
 			</div>
 			<div class="form-group text-center">
 			{{ form_row(form.send, 
@@ -37,7 +38,7 @@
 			</div>
 			{{ form_end(form) }}
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<h1>carte</h1>
 			<div id="map"></div>
 		</div>

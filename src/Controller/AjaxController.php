@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 //pour les catégories
 use App\Entity\Panier;
+//pour les membres
+use App\Entity\Clients;
 class AjaxController extends Controller
 {
 	/**
@@ -39,6 +41,25 @@ class AjaxController extends Controller
 		$em->flush();
 
 		return new response(json_encode(['msg' => '<p class="alert alert-success">Quantité modifiée</p>']));
+	}
+
+	/**
+	 * @Route("/recupAdr", name="recupAdr")
+	 */
+	public function recupAdr()
+	{
+		$retour = array();
+		$em = $this->getDoctrine()->getManager();
+		$adresses = $em->getRepository(Clients::class)->findAll();
+		foreach($adresses as $adr)
+		{
+			$retour[] = ['adr' =>$adr->getAdresseClient().' '
+													.$adr->getCpClient().' '
+													.$adr->getVilleClient(), 
+									 'nom' => $adr->getPrenomClient().' '
+									 				 .$adr->getNomClient()];
+		}
+		return new Response(json_encode($retour));
 	}
 
 }
