@@ -1,2 +1,8 @@
 @todo
 - modifier url navbar.html.twig
+- voir relations manyToOne, OneToOne, ManyToMany
+- cf flashMessage et sessions
+- voir Doctrine Event Listeners et Subscribers 
+- cf déploiement et performances (cache, etc)
+- cf test unitaires
+- cf traduction
